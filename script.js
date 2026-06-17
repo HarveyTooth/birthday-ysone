@@ -155,9 +155,12 @@ function renderOpenWhenPage() {
   app.querySelectorAll(".letter-card").forEach((card) => {
     card.addEventListener("click", () => {
       const item = openWhenCards[Number(card.dataset.index)];
+      const modalMedia = item.type === "text"
+        ? ""
+        : `<div class="modal-media">${mediaTemplate(item, true)}</div>`;
       openModal(`
         <h2 class="modal-title">${item.title}</h2>
-        <div class="modal-media">${mediaTemplate(item.type)}</div>
+        ${modalMedia}
         <p class="modal-copy">${item.message}</p>
       `);
     });
@@ -200,26 +203,58 @@ function bindBackButton() {
 function letterCardTemplate(card, index) {
   return `
     <button class="letter-card" type="button" data-index="${index}">
-      <div class="media-frame">${mediaTemplate(card.type)}</div>
+      <div class="media-frame">${mediaTemplate(card, false)}</div>
       <p class="card-label">${card.title}</p>
     </button>
   `;
 }
 
-function mediaTemplate(type) {
-  if (type === "image") {
+function mediaTemplate(card, isModal) {
+  if (card.type === "image") {
+    if (card.src) {
+      return `<img src="${card.src}" alt="${card.title}" loading="lazy" onerror="this.replaceWith(createMissingMediaNotice('${card.src}'))">`;
+    }
+
     return `<div class="pixel-preview" role="img" aria-label="Pixel art image placeholder"></div>`;
   }
 
-  if (type === "video") {
+  if (card.type === "video") {
+    if (card.src) {
+      return `
+        <video ${isModal ? "controls" : "muted playsinline"} preload="metadata" ${isModal ? "" : ""} onerror="this.replaceWith(createMissingMediaNotice('${card.src}'))">
+          <source src="${card.src}" type="video/mp4">
+          Your browser cannot play this video.
+        </video>
+      `;
+    }
+
     return `<div class="video-preview" role="img" aria-label="Video placeholder"></div>`;
   }
 
-  if (type === "audio") {
+  if (card.type === "audio") {
+    if (card.src) {
+      return `
+        <div class="audio-player">
+          <div class="audio-preview" role="img" aria-label="Audio"></div>
+          <audio controls preload="metadata" onerror="this.replaceWith(createMissingMediaNotice('${card.src}'))">
+            <source src="${card.src}" type="audio/mpeg">
+            Your browser cannot play this audio.
+          </audio>
+        </div>
+      `;
+    }
+
     return `<div class="audio-preview" role="img" aria-label="Audio placeholder"></div>`;
   }
 
   return `<p class="text-preview">A tiny letter waits inside this box.</p>`;
+}
+
+function createMissingMediaNotice(src) {
+  const notice = document.createElement("p");
+  notice.className = "text-preview missing-media";
+  notice.textContent = `Media file not found: ${src}`;
+  return notice;
 }
 
 function openModal(html) {
