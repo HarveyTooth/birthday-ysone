@@ -45,7 +45,7 @@ const openWhenCards = [
     title: "Open when... you miss my voice",
     type: "audio",
     src: "first-song.mp3",
-    message: "This audio recording is the first recording I sent you. Because I want to sing you a song, for there's nothing like doing doing nothing, with you."
+    message: "This audio recording is the first recording I sent you. Because I wanted to sing your favorite song."
   },
   {
     title: "Open when... you feel loved",
@@ -98,8 +98,8 @@ function renderFrontPage() {
   app.querySelector(".start-button").addEventListener("click", () => setRoute("menu"));
   app.querySelector(".heart-button").addEventListener("click", () => {
     openModal(`
-      <h2 class="modal-title">Hidden Heart Message</h2>
-      <p class="modal-copy">I apologize my love for this what I can do for now. I promise to make it up to you someday for "There's nothing like you and me... and I'm happy doing nothing with you."</p>
+      <h2 class="modal-title">Hidden Message</h2>
+      <p class="modal-copy">I apologize my love for this is only what I can do for now. I promise to make it up to you someday for I will love you even when the night sky turns brighter than the daylight.</p>
     `);
   });
 }
@@ -127,11 +127,11 @@ function renderMessagePage() {
       <div class="message-wrap">
         <article class="message-box scroll-area" tabindex="0">
           <h2>Dear Ysone,</h2>
-          <p>Happy birthday, my love. This little retro world is only a tiny version of what I wish I could hand you today, but every pixel is here because I wanted you to feel celebrated, chosen, and remembered.</p>
-          <p>You make ordinary days feel like secret bonus levels. Even when the distance is annoying and the screen is the only bridge we get, you still make me feel like I am standing close enough to laugh with you.</p>
-          <p>I hope this year gives you gentleness when you need rest, courage when the path gets loud, and joy that finds you in the middle of normal days. I hope you never forget how deeply you are loved.</p>
-          <p>Thank you for being my favorite teammate, my favorite story, and my favorite person to do absolutely nothing with. I am cheering for you in every quest, every chapter, every tomorrow.</p>
-          <p>For now, please accept this scrollable message box as a placeholder for a longer letter. It is ready for all the real words, memories, promises, and tiny jokes you want to add later.</p>
+          <p>Happy birthday, my love, my darling, my wifey, my baby, my mommy. This little world is only a tiny version of what I wish I could hand you today, but everything I want to say is here because I wanted you to feel celebrated and remembered even if we're apart.</p>
+          <p>It's been a long time since we spent so much time and I miss the last time we did every single day. I wish we could just have the money we all need to spend the rest of our lives together. But you know, this is the very beauty of distance right? To love even with the circumstances.</p>
+          <p>I hope you know that you make every single day something to look forward to. Because, your existence means everything to me. Every song I ever wanted to sing and listen to are all meant for you.</p>
+          <p>Thank you for being my favorite teammate in life and my favorite person to do absolutely nothing with. I am proud of you and I am cheering for you in every thing you do.</p>
+          <p>More than everything, I hope you enjoy what is to come today-your birthday. I wish you all the best baby and remember that I will love you perpetually more than the lifespan of an immortal jellyfish.</p>
         </article>
       </div>
     </section>
